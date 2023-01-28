@@ -173,7 +173,9 @@ class Mypluginwp {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles', 11 );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 		$this->loader->add_action( 'template_redirect', $plugin_public, 'mypwp_template_redirect', 10, 1 );
-
+		//woo register
+		$this->loader->add_action( 'woocommerce_register_form', $plugin_public, 'mypwp_woocommerce_register_form' );
+		$this->loader->add_action( 'woocommerce_created_customer', $plugin_public, 'mypwp_woocommerce_created_customer', 10, 3 );
 	}
 
 	/**

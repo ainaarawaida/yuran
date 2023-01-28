@@ -78,7 +78,8 @@ class Mypluginwp_Public {
 		global $wp_scripts;
 			foreach( $wp_scripts->queue as $script ) :
 			
-				$exclude = array("admin-bar") ;
+				$exclude = array("admin-bar","woocommerce",
+				"selectWoo", "wc-add-to-cart","wc-cart-fragments") ;
 				if (in_array($script, $exclude))
 					continue;
 					// deb($script);
@@ -88,14 +89,15 @@ class Mypluginwp_Public {
 			// Print all loaded Styles (CSS)
 			global $wp_styles;
 			foreach( $wp_styles->queue as $style ) :
-				$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts") ;
+				$exclude = array("admin-bar","wp-block-library","global-styles","wp-webfonts","select2",
+				"woocommerce-layout","woocommerce-smallscreen","woocommerce-general","woocommerce-inline") ;
 				if (in_array($style, $exclude))
 					continue;
 				// deb($style);
 				wp_dequeue_style( $style );
 			endforeach;
 		
-		
+		// exit();
 
 	}
 
@@ -111,12 +113,49 @@ class Mypluginwp_Public {
 
 	public function mypwp_template_redirect(){
 			global $wp;
-			if(is_front_page()){
-				include_once dirname( __FILE__ ) . '/partials/front_page.php';
+		
+			if(wp_get_current_user() && wp_get_current_user()->ID != 1){ //kalau login ke svelte dashboard
+				include_once dirname( __FILE__ ) . '/partials/dashboard.php';
 				exit();
+			}else{
+
+				if(is_front_page()){
+					include_once dirname( __FILE__ ) . '/partials/front_page.php';
+					exit();
+				}else{
+					
+					include_once dirname( __FILE__ ) . '/partials/default.php';
+					exit();
+				}
+
 			}
+			
 		
 			
+	}
+
+	public function mypwp_woocommerce_register_form(){
+		include_once dirname( __FILE__ ) . '/partials/mypwp_woocommerce_register_form.php' ;
+
+	}
+
+	
+	public function mypwp_woocommerce_created_customer($customer_id, $new_customer_data, $password_generated){
+		
+		if($_POST['type_reg'] === 'pentadbir'){
+			$updated = update_user_meta( $customer_id, 'wp_capabilities', array('pentadbir' => 1) );
+			$updated = update_user_meta( $customer_id, 'role', 1 );
+			$updated = update_user_meta( $customer_id, 'stage_daftar', 0 );
+			$updated = update_user_meta( $customer_id, 'group_id', $_POST['group_id'] );
 		}
+
+		if($_POST['type_reg'] === 'ahli'){
+			$updated = update_user_meta( $customer_id, 'wp_capabilities', array('ahli' => 1) );
+			$updated = update_user_meta( $customer_id, 'stage_daftar', 0 );
+			$updated = update_user_meta( $customer_id, 'role', 2 );
+			$updated = update_user_meta( $customer_id, 'group_id', $_POST['group_id'] );
+		}
+
+	}
 
 }
