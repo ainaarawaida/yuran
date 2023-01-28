@@ -18,11 +18,6 @@
       localStorage.setItem("_data", JSON.stringify(_data));
       return currentPolls;
     });
-
-    // setTimeout(async () => {
-    // await loadScript(`${mypluginurl}/assets/js/oneui.app.min.js`);
-    // console.log("oneui.app.min.js11");
-    // }, 5100);
   });
 </script>
 
