@@ -1,0 +1,43 @@
+<script>
+  import { navigate, Router, Link, Route } from "svelte-navigator";
+  import { globalHistory } from "svelte-navigator/src/history";
+  import { onMount } from "svelte";
+  import { data } from "./store.js";
+  import { onDestroy } from "svelte";
+
+  let _data;
+  let unsubscribe_data;
+  let myapiurl = import.meta.env.VITE_MYAPIURL;
+  let mylinkurl = import.meta.env.VITE_MYLINKURL;
+  let mypluginurl = import.meta.env.VITE_MYPLUGINURL;
+  let mybaseurl = import.meta.env.VITE_MYBASEURL;
+
+  import Default from "./routes/Default.svelte";
+  import Header from "./routes/Header.svelte";
+  import Sidebar from "./routes/Sidebar.svelte";
+  import Footer from "./routes/Footer.svelte";
+  import Home from "./routes/Home.svelte";
+
+  unsubscribe_data = data.subscribe((value) => {
+    _data = value;
+  });
+  data.update((currentPolls) => {
+    _data = currentPolls;
+    _data.loading = true;
+    _data.loadscript = false;
+    _data.myapiurl = myapiurl;
+    _data.mylinkurl = mylinkurl;
+    _data.mypluginurl = mypluginurl;
+    _data.mybaseurl = mybaseurl;
+    localStorage.setItem("_data", JSON.stringify(_data));
+    return _data;
+  });
+
+  onMount(async () => {});
+
+  onDestroy(() => {
+    unsubscribe_data();
+  });
+
+  $: console.log("_data", _data);
+</script>
