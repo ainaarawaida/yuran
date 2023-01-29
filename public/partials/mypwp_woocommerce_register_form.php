@@ -1,6 +1,6 @@
 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-    <label for="type_reg"><?php esc_html_e( 'Type Registration', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-    <select name="type_reg" id="type_reg" class="form-control woocommerce-Input woocommerce-Input--select input-select" required>
+    <label for="typeReg"><?php esc_html_e( 'Type Registration', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
+    <select name="typeReg" id="typeReg" class="form-control woocommerce-Input woocommerce-Input--select input-select" required>
         <option value="ahli">Daftar Ahli</option>
         <option value="pentadbir">Daftar Pentadbir</option>
     </select>
@@ -11,17 +11,17 @@
 <?php 
 global $wpdb ;
 
-$group_id = $wpdb->get_results( 
+$groupId = $wpdb->get_results( 
     $wpdb->prepare("SELECT ID,post_name,post_title FROM {$wpdb->prefix}posts WHERE post_type =%s", array('mypwp_page_name')) 
  );
 
 ?>
 
-<p id="p_group_id" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
-    <label for="group_id"><?php esc_html_e( 'Group Name', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
-    <select name="group_id" id="group_id" class="form-control woocommerce-Input woocommerce-Input--select input-select" required>
+<p id="p_groupId" class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
+    <label for="groupId"><?php esc_html_e( 'Group Name', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
+    <select name="groupId" id="groupId" class="form-control woocommerce-Input woocommerce-Input--select input-select" required>
         <option></option>
-        <?php foreach($group_id AS $key => $val ) { ?>
+        <?php foreach($groupId AS $key => $val ) { ?>
         <option value="<?php echo $val->ID ; ?>"><?php echo ($val->post_title) ; ?> </option>
       
         <?php } ?> 
@@ -49,29 +49,29 @@ document.addEventListener("DOMContentLoaded", function(){
             }
 
 
-            let ele = document.querySelector("#type_reg") ;
+            let ele = document.querySelector("#typeReg") ;
           
             if(ele.value == 'ahli'){
-                    document.querySelector("#p_group_id").style.display = 'block' ;
-                    document.querySelector("#group_id").setAttribute('required','');
-                    // document.querySelector("#p_group_id").required = true ;
+                    document.querySelector("#p_groupId").style.display = 'block' ;
+                    document.querySelector("#groupId").setAttribute('required','');
+                    // document.querySelector("#p_groupId").required = true ;
                    }else{
                 
-                    document.querySelector("#p_group_id").style.display = 'none' ;
-                    document.querySelector("#group_id").removeAttribute('required');
-                    // document.querySelector("#p_group_id").required = false ;
+                    document.querySelector("#p_groupId").style.display = 'none' ;
+                    document.querySelector("#groupId").removeAttribute('required');
+                    // document.querySelector("#p_groupId").required = false ;
                    }
 
 
             ele.addEventListener("change", function(e){
                    if(e.target.value == 'ahli'){
-                    document.querySelector("#p_group_id").style.display = 'block' ;
-                    document.querySelector("#group_id").setAttribute('required','');
-                    // document.querySelector("#p_group_id").required = true ;
+                    document.querySelector("#p_groupId").style.display = 'block' ;
+                    document.querySelector("#groupId").setAttribute('required','');
+                    // document.querySelector("#p_groupId").required = true ;
                    }else{
-                    document.querySelector("#p_group_id").style.display = 'none' ;
-                    document.querySelector("#group_id").removeAttribute('required');
-                    // document.querySelector("#p_group_id").required = false ;
+                    document.querySelector("#p_groupId").style.display = 'none' ;
+                    document.querySelector("#groupId").removeAttribute('required');
+                    // document.querySelector("#p_groupId").required = false ;
                    }
                    
                   
@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function(){
     });
 
 
-$( '#group_id' ).select2( {
+$( '#groupId' ).select2( {
     theme: 'bootstrap-5'
 } );
 </script>

@@ -75,7 +75,7 @@ register_deactivation_hook( __FILE__, 'deactivate_mypluginwp' );
  * admin-specific hooks, and public-facing site hooks.
  */
 require plugin_dir_path( __FILE__ ) . 'includes/class-mypluginwp.php';
-require_once plugin_dir_path( __FILE__ ) . 'api/index.php';
+require_once plugin_dir_path( __FILE__ ) . 'api/main.php';
 
 /**
  * Begins execution of the plugin.

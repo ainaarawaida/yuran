@@ -13,13 +13,14 @@ function mypwp_check_user(){
     
     if($_POST['action'] && $_POST['action'] === 'GetUserData'){
         if(wp_get_current_user()->ID == 0 ){
-              //pentadbir1@demo.pentadbir1  
-    //pentadbir1password
+            //pentadbir1@demo.pentadbir1  
+            //pentadbir1password
             $user = get_user_by('email', 'pentadbir1@demo.pentadbir1');
             $GLOBALS['mypwp_temp_data']['mypwp_user'] = $user; //<- production
         }else{
             $GLOBALS['mypwp_temp_data']['mypwp_user'] = wp_get_current_user(); //<- production
         }
+        $GLOBALS['mypwp_temp_data']['mypwp_user']->stageDaftar = get_user_meta( $GLOBALS['mypwp_temp_data']['mypwp_user']->ID, 'stageDaftar', true ) ;
 
 
 
@@ -29,6 +30,10 @@ function mypwp_check_user(){
     if($_POST['action'] && $_POST['action'] === 'GetLogoutLink'){
         $logout_url = wp_logout_url( get_permalink() );
         $GLOBALS['mypwp_temp_data']['logout_url'] = $logout_url ;
+    }else
+    if($_POST['action'] && $_POST['action'] === 'RegisterGroup'){
+        require_once mypwp_PATH . '/public/api/RegisterGroup.php' ;
+        
     }
     
   

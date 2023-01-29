@@ -147,15 +147,15 @@ class Mypluginwp_Public {
 		if($_POST['type_reg'] === 'pentadbir'){
 			$updated = update_user_meta( $customer_id, 'wp_capabilities', array('pentadbir' => 1) );
 			$updated = update_user_meta( $customer_id, 'role', 1 );
-			$updated = update_user_meta( $customer_id, 'stage_daftar', 0 );
-			$updated = update_user_meta( $customer_id, 'group_id', $_POST['group_id'] );
+			$updated = update_user_meta( $customer_id, 'stageDaftar', 0 );
+			
 		}
 
 		if($_POST['type_reg'] === 'ahli'){
 			$updated = update_user_meta( $customer_id, 'wp_capabilities', array('ahli' => 1) );
-			$updated = update_user_meta( $customer_id, 'stage_daftar', 0 );
+			$updated = update_user_meta( $customer_id, 'stageDaftar', 0 );
 			$updated = update_user_meta( $customer_id, 'role', 2 );
-			$updated = update_user_meta( $customer_id, 'group_id', $_POST['group_id'] );
+			$updated = update_user_meta( $customer_id, 'groupId', $_POST['groupId'] );
 		}
 
 	}

@@ -61,7 +61,7 @@ foreach ($allfile AS $key => $val){
 
 ?>
 
-<link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/fontawesome.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/icofont.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/themify.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/flag-icon.css" />
