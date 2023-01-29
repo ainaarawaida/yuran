@@ -18,6 +18,8 @@
   import Footer from "./routes/Footer.svelte";
   import Home from "./routes/Home.svelte";
 
+  import RegisterGroup from "./routes/RegisterGroup.svelte";
+
   unsubscribe_data = data.subscribe((value) => {
     _data = value;
   });
@@ -65,18 +67,17 @@
         <Sidebar />
         <div class="page-body dashboard-2-main">
           <!-- Container-fluid starts-->
-          <div class="container-fluid">
-            <Route path={_data.mybaseurl + "/"}>
-              <Home />
-            </Route>
-            <Route path={_data.mybaseurl + "/Dashboard"}>
-              <!-- <Home2 /> -->
-              <Home />
-            </Route>
-            <Route>
-              <Default />
-            </Route>
-          </div>
+
+          <Route path={_data.mylinkurl + "/"}>
+            <Home />
+          </Route>
+          <Route path={_data.mylinkurl + "/RegisterGroup"}>
+            <RegisterGroup />
+          </Route>
+          <Route>
+            <Default />
+          </Route>
+
           <!-- Container-fluid Ends-->
         </div>
         <Footer />

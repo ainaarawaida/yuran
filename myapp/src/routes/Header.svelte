@@ -7,7 +7,6 @@
   let _data;
   let LogoutLink;
   _data = JSON.parse(localStorage.getItem("_data"));
-  console.log("heheh", _data);
 
   onMount(async () => {});
 
