@@ -80,7 +80,6 @@ if ( ! defined( 'ABSPATH' ) ) {
         </header>
 
 
-
         <br><br>
         <!-- Main Container -->
         <section class="core-feature section-py-space bg-white">

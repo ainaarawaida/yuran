@@ -33,7 +33,10 @@
     return _data;
   });
 
-  onMount(async () => {});
+  onMount(async () => {
+    _data.loading = false;
+    localStorage.setItem("_data", JSON.stringify(_data));
+  });
 
   onDestroy(() => {
     unsubscribe_data();
@@ -41,3 +44,37 @@
 
   $: console.log("_data", _data);
 </script>
+
+<Router primary={false}>
+  {#if _data.loading === true}
+    <!-- Loader starts-->
+    <div class="d-flex justify-content-center">
+      <img class="" src="{_data.mypluginurl}/loading.gif" alt="" />
+    </div>
+    <!-- Loader ends-->
+  {:else if _data.loading === false}
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+      <Header />
+      <div class="page-body-wrapper sidebar-icon">
+        <Sidebar />
+        <div class="page-body dashboard-2-main">
+          <!-- Container-fluid starts-->
+          <div class="container-fluid">
+            <Route path={"/"}>
+              <Home />
+            </Route>
+            <Route path={"/Dashboard"}>
+              <!-- <Home2 /> -->
+              <Home />
+            </Route>
+            <Route>
+              <Default />
+            </Route>
+          </div>
+          <!-- Container-fluid Ends-->
+        </div>
+        <Footer />
+      </div>
+    </div>
+  {/if}
+</Router>

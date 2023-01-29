@@ -1,0 +1,9 @@
+
+  div.dt-button-collection {
+    width: 300px !important;
+  }
+
+  .dark-only button.dt-button, div.dt-button, a.dt-button{
+    background-image: -moz-linear-gradient(top, #393636 0%, var(--theme-deafult) 100%) !important;
+  }
+  /* html body.dark-only div#app div#pageWrapper.page-wrapper.null.compact-wrapper div.page-body-wrapper.null div.page-body.dashboard-2-main div.container-fluid div#mydatatable_wrapper.dataTables_wrapper.no-footer div.dt-buttons button.dt-button.buttons-csv.buttons-html5 */

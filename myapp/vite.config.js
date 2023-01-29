@@ -16,7 +16,7 @@ export default ({ mode }) => {
     process.env.VITE_MYBASE = ``;
   } else { //dev
 
-    process.env.VITE_MYPLUGINURL = ``;
+    process.env.VITE_MYPLUGINURL = myrealbase;
     process.env.VITE_MYLINKURL = myrealbase;
     process.env.VITE_MYBASEURL = ``;
     process.env.VITE_MYBASE = myrealbase;
