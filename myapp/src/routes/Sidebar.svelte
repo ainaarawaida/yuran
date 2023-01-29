@@ -1,8 +1,5 @@
 <script>
   import { navigate, Router, Link, Route } from "svelte-navigator";
-  let isOpen = false;
-  let status = "Closed";
-  import { loadScript } from "./../document.js";
   import { globalHistory } from "svelte-navigator/src/history";
   let pathname = window.location.pathname;
   let unsub;
@@ -10,28 +7,18 @@
   import { onMount } from "svelte";
   import { onDestroy } from "svelte";
   import { data } from "./../store.js";
+
   let _data;
-  data.update((currentPolls) => {
-    _data = currentPolls;
-    return currentPolls;
-  });
+  _data = JSON.parse(localStorage.getItem("_data"));
+
   onMount(async () => {
     unsub = globalHistory.listen(({ location, action }) => {
       pathname = location.pathname;
     });
-    data.update((currentPolls) => {
-      _data.loading = false;
-      localStorage.setItem("_data", JSON.stringify(_data));
-      return currentPolls;
-    });
-    // await loadScript(`/luq/assets/js/sidebar-menu.js`, `sidebar`);
   });
   onDestroy(() => {
     unsub();
   });
-  // $: console.log("pathname", pathname);
-  // $: console.log("sidebarkhai_user", khai_user.data.noKadPengenalanBaru);
-  // console.log("pathname == mylinkurl", pathname, mylinkurl);
 </script>
 
 <!-- Page Sidebar Start-->
@@ -41,15 +28,17 @@
       ><i data-feather="settings" /></a
     ><img
       class="img-90 rounded-circle"
-      src="/luq/assets/images/dashboard/1.png"
+      src="{_data.mypluginurl}/luq/assets/images/dashboard/1.png"
       alt=""
     />
-    <div class="badge-bottom"><span class="badge badge-primary">New</span></div>
-    <a href="user-profile.html">
-      <h6 class="mt-3 f-14 f-w-600">Emay Walter</h6></a
+    <div class="badge-bottom">
+      <span class="badge badge-primary">Staff</span>
+    </div>
+    <a href={_data.mypluginurl}>
+      <h6 class="mt-3 f-14 f-w-600">{_data.user.data.display_name}</h6></a
     >
-    <p class="mb-0 font-roboto">Human Resources Department</p>
-    <ul>
+    <p class="mb-0 font-roboto">{_data.user.data.user_email}</p>
+    <!-- <ul>
       <li>
         <span><span class="counter">19.8</span>k</span>
         <p>Follow</p>
@@ -62,7 +51,7 @@
         <span><span class="counter">95.2</span>k</span>
         <p>Follower</p>
       </li>
-    </ul>
+    </ul> -->
   </div>
   <nav>
     <div class="main-navbar">
@@ -79,15 +68,96 @@
               />
             </div>
           </li>
-          <li class="sidebar-main-title">
+          <!-- <li class="sidebar-main-title">
             <div>
               <h6>General</h6>
             </div>
-          </li>
+          </li> -->
           <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname ==
+              _data.mylinkurl + '/Dashboard'
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/Dashboard"}
+            >
+              <i data-feather="home" /><span>Dashboard</span></Link
+            >
+          </li>
+
+          <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname.includes(
+                _data.mylinkurl + '/UploadCagamasData'
+              )
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/UploadCagamasData"}
+            >
+              <i data-feather="file-text" /><span>Upload Cagamas Data</span
+              ></Link
+            >
+          </li>
+
+          <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname.includes(
+                _data.mylinkurl + '/ProsesCagamasData'
+              )
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/ProsesCagamasData"}
+            >
+              <i data-feather="airplay" /><span>Proses Cagamas Data</span></Link
+            >
+          </li>
+
+          <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname.includes(
+                _data.mylinkurl + '/ViewCagamasData'
+              )
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/ViewCagamasData"}
+            >
+              <i data-feather="layout" /><span>View Cagamas Data</span></Link
+            >
+          </li>
+
+          <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname.includes(
+                _data.mylinkurl + '/ViewLPPSAData'
+              )
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/ViewLPPSAData"}
+            >
+              <i data-feather="box" /><span>View LPPSA Data</span></Link
+            >
+          </li>
+
+          <li class="dropdown">
+            <Link
+              class="nav-link menu-title link-nav {pathname.includes(
+                _data.mylinkurl + '/ReconciledAccount'
+              )
+                ? `active`
+                : ``}"
+              to={_data.mylinkurl + "/ReconciledAccount"}
+            >
+              <i data-feather="folder-plus" /><span>Reconciled Account</span
+              ></Link
+            >
+          </li>
+
+          <!-- <li class="dropdown">
             <a
-              class="nav-link menu-title {pathname == '/' ? `active` : ``}"
-              href="#"><i data-feather="home" /><span>Dashboard</span></a
+              class="nav-link menu-title {pathname == '/xxxxzxz'
+                ? `active`
+                : ``}"
+              href="#"><i data-feather="edit-3" /><span>Dashboard</span></a
             >
             <ul class="nav-submenu menu-content">
               <li>
@@ -749,7 +819,7 @@
             <a class="nav-link menu-title link-nav" href="support-ticket.html"
               ><i data-feather="headphones" /><span>Support Ticket</span></a
             >
-          </li>
+          </li> -->
         </ul>
       </div>
       <div class="right-arrow" id="right-arrow">

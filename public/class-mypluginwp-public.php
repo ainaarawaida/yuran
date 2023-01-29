@@ -114,7 +114,9 @@ class Mypluginwp_Public {
 	public function mypwp_template_redirect(){
 			global $wp;
 		
-			if(wp_get_current_user() && wp_get_current_user()->ID != 1){ //kalau login ke svelte dashboard
+		
+			// if(wp_get_current_user() && wp_get_current_user()->ID != 1){ //kalau login ke svelte dashboard
+			if(wp_get_current_user()->ID !== 0){ //kalau login ke svelte dashboard
 				include_once dirname( __FILE__ ) . '/partials/dashboard.php';
 				exit();
 			}else{
@@ -156,6 +158,20 @@ class Mypluginwp_Public {
 			$updated = update_user_meta( $customer_id, 'group_id', $_POST['group_id'] );
 		}
 
+	}
+
+
+	function mypwp_check_admin_referer($action, $result)
+	{
+		/**
+		 * Allow logout without confirmation
+		 */
+		if ($action == "log-out" && !isset($_GET['_wpnonce'])) {
+			$redirect_to = isset($_REQUEST['redirect_to']) ? $_REQUEST['redirect_to'] : home_url();
+			$location = str_replace('&amp;', '&', wp_logout_url($redirect_to));
+			header("Location: $location");
+			die;
+		}
 	}
 
 }

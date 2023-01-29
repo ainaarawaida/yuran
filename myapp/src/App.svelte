@@ -1,6 +1,6 @@
 <script>
   import { navigate, Router, Link, Route } from "svelte-navigator";
-  import { globalHistory } from "svelte-navigator/src/history";
+  import { requestdataapi } from "./sharefunc.js";
   import { onMount } from "svelte";
   import { data } from "./store.js";
   import { onDestroy } from "svelte";
@@ -34,8 +34,14 @@
   });
 
   onMount(async () => {
-    _data.loading = false;
+    let apioutput = requestdataapi({
+      action: "GetUserData",
+    });
+
+    _data.user = (await apioutput).mypwp_user;
     localStorage.setItem("_data", JSON.stringify(_data));
+
+    _data.loading = false;
   });
 
   onDestroy(() => {
@@ -60,10 +66,10 @@
         <div class="page-body dashboard-2-main">
           <!-- Container-fluid starts-->
           <div class="container-fluid">
-            <Route path={"/"}>
+            <Route path={_data.mybaseurl + "/"}>
               <Home />
             </Route>
-            <Route path={"/Dashboard"}>
+            <Route path={_data.mybaseurl + "/Dashboard"}>
               <!-- <Home2 /> -->
               <Home />
             </Route>

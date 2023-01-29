@@ -176,6 +176,9 @@ class Mypluginwp {
 		//woo register
 		$this->loader->add_action( 'woocommerce_register_form', $plugin_public, 'mypwp_woocommerce_register_form' );
 		$this->loader->add_action( 'woocommerce_created_customer', $plugin_public, 'mypwp_woocommerce_created_customer', 10, 3 );
+
+		//logout without confirmation
+		$this->loader->add_action('check_admin_referer', $plugin_public, 'mypwp_check_admin_referer', 10, 2);
 	}
 
 	/**
