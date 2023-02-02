@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link rel="shortcut icon" href="#">
 	<?php 
     
     
@@ -61,7 +61,7 @@ foreach ($allfile AS $key => $val){
 
 ?>
 
-    <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/fontawesome.css" />
+    <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/public/luq/assets/css/fontawesome2.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/icofont.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/themify.css" />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/flag-icon.css" />
@@ -80,7 +80,29 @@ foreach ($allfile AS $key => $val){
       href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/color-1.css"
     />
     <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/responsive.css" />
-
+    <link rel="stylesheet" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/all.css" />
+  <!-- Data Tables Start -->
+  <link
+    rel="stylesheet"
+    href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/jquery.dataTables.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/buttons.dataTables.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/select.dataTables.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/responsive.dataTables.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/share/css/fixedColumns.dataTables.min.css"
+  />
+  <!-- Data Tables End -->
 
 </head>
 <body>

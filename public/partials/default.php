@@ -11,12 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  <link rel="shortcut icon" href="#">
 	<?php wp_head(); ?>
 
 
    <!-- Font Awesome-->
-   <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/fontawesome.css">
+   <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/public/luq/assets/css/fontawesome2.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/icofont.css">
     <!-- Themify icon-->

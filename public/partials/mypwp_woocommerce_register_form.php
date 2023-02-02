@@ -1,8 +1,8 @@
 <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
     <label for="typeReg"><?php esc_html_e( 'Type Registration', 'woocommerce' ); ?>&nbsp;<span class="required">*</span></label>
     <select name="typeReg" id="typeReg" class="form-control woocommerce-Input woocommerce-Input--select input-select" required>
-        <option value="ahli">Daftar Ahli</option>
-        <option value="pentadbir">Daftar Pentadbir</option>
+        <option value="ahli">Register as Member</option>
+        <option value="pentadbir">Register as Admin</option>
     </select>
 
 </p>
@@ -12,7 +12,7 @@
 global $wpdb ;
 
 $groupId = $wpdb->get_results( 
-    $wpdb->prepare("SELECT ID,post_name,post_title FROM {$wpdb->prefix}posts WHERE post_type =%s", array('mypwp_page_name')) 
+    $wpdb->prepare("SELECT ID,post_name,post_title FROM {$wpdb->prefix}posts WHERE post_type =%s", array('yuranGroupName')) 
  );
 
 ?>
@@ -34,8 +34,10 @@ $groupId = $wpdb->get_results(
 
 
 <!-- Scripts -->
+
+<script src="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/js/jquery-3.5.1.min.js"></script>
 <script src="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/js/select2/select2.full.min.js"></script>
-    <script src="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/js/select2/select2-custom.js"></script>
+   
 
 <script>
 

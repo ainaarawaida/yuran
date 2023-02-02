@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
    <!-- Font Awesome-->
-   <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/fontawesome.css">
+   <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/public/luq/assets/css/fontawesome2.css">
     <!-- ico-font-->
     <link rel="stylesheet" type="text/css" href="<?php echo MYPLUGINWP_URL ; ?>/myapp/dist/luq/assets/css/icofont.css">
     <!-- Themify icon-->
