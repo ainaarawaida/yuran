@@ -18,22 +18,25 @@
   import Footer from "./routes/Footer.svelte";
   import Home from "./routes/Home.svelte";
 
-  import RegisterGroup from "./routes/RegisterGroup.svelte";
+  import Mystep from "./routes/Mystep.svelte";
+  import Dashboard from "./routes/Dashboard.svelte";
+  import GroupRegister from "./routes/GroupRegister.svelte";
+  import ProfileRegister from "./routes/ProfileRegister.svelte";
+  import MemberRegister from "./routes/MemberRegister.svelte";
+  import MemberList from "./routes/MemberList.svelte";
 
+  _data = JSON.parse(localStorage.getItem("_data")) || {};
   unsubscribe_data = data.subscribe((value) => {
     _data = value;
   });
-  data.update((currentPolls) => {
-    _data = currentPolls;
-    _data.loading = true;
-    _data.loadscript = false;
-    _data.myapiurl = myapiurl;
-    _data.mylinkurl = mylinkurl;
-    _data.mypluginurl = mypluginurl;
-    _data.mybaseurl = mybaseurl;
-    localStorage.setItem("_data", JSON.stringify(_data));
-    return _data;
-  });
+
+  _data.loading = true;
+  _data.loadscript = false;
+  _data.myapiurl = myapiurl;
+  _data.mylinkurl = mylinkurl;
+  _data.mypluginurl = mypluginurl;
+  _data.mybaseurl = mybaseurl;
+  localStorage.setItem("_data", JSON.stringify(_data));
 
   onMount(async () => {
     let apioutput = requestdataapi({
@@ -67,13 +70,26 @@
         <Sidebar />
         <div class="page-body dashboard-2-main">
           <!-- Container-fluid starts-->
-
+          <Mystep />
           <Route path={_data.mylinkurl + "/"}>
             <Home />
           </Route>
-          <Route path={_data.mylinkurl + "/RegisterGroup"}>
-            <RegisterGroup />
+          <Route path={_data.mylinkurl + "/Dashboard"}>
+            <Dashboard />
           </Route>
+          <Route path={_data.mylinkurl + "/GroupRegister"}>
+            <GroupRegister />
+          </Route>
+          <Route path={_data.mylinkurl + "/ProfileRegister"}>
+            <ProfileRegister />
+          </Route>
+          <Route path={_data.mylinkurl + "/MemberRegister/*param"}>
+            <MemberRegister />
+          </Route>
+          <Route path={_data.mylinkurl + "/MemberList/*param"}>
+            <MemberList />
+          </Route>
+
           <Route>
             <Default />
           </Route>

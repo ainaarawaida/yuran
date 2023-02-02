@@ -5,7 +5,7 @@
   import { data } from "./../store.js";
 
   let _data;
-  _data = JSON.parse(localStorage.getItem("_data"));
+  _data = JSON.parse(localStorage.getItem("_data")) || {};
 
   onMount(async () => {
     await loadScript(

@@ -2,8 +2,7 @@
   import { navigate, Router, Link, Route } from "svelte-navigator";
   import { globalHistory } from "svelte-navigator/src/history";
   let pathname = window.location.pathname;
-  let unsub;
-  import { getContext } from "svelte";
+  let unsub_sidebar;
   import { onMount } from "svelte";
   import { onDestroy } from "svelte";
   import { data } from "./../store.js";
@@ -12,12 +11,12 @@
   _data = JSON.parse(localStorage.getItem("_data"));
 
   onMount(async () => {
-    unsub = globalHistory.listen(({ location, action }) => {
+    unsub_sidebar = globalHistory.listen(({ location, action }) => {
       pathname = location.pathname;
     });
   });
   onDestroy(() => {
-    unsub();
+    unsub_sidebar();
   });
 </script>
 
@@ -88,53 +87,52 @@
           <li class="dropdown">
             <Link
               class="nav-link menu-title link-nav {pathname.includes(
-                _data.mylinkurl + '/UploadCagamasData'
+                _data.mylinkurl + '/GroupRegister'
               )
                 ? `active`
                 : ``}"
-              to={_data.mylinkurl + "/UploadCagamasData"}
+              to={_data.mylinkurl + "/GroupRegister"}
             >
-              <i data-feather="file-text" /><span>Upload Cagamas Data</span
-              ></Link
+              <i data-feather="file-text" /><span>Group Register </span></Link
             >
           </li>
 
           <li class="dropdown">
             <Link
               class="nav-link menu-title link-nav {pathname.includes(
-                _data.mylinkurl + '/ProsesCagamasData'
+                _data.mylinkurl + '/ProfileRegister'
               )
                 ? `active`
                 : ``}"
-              to={_data.mylinkurl + "/ProsesCagamasData"}
+              to={_data.mylinkurl + "/ProfileRegister"}
             >
-              <i data-feather="airplay" /><span>Proses Cagamas Data</span></Link
+              <i data-feather="airplay" /><span>Profile Register</span></Link
             >
           </li>
 
           <li class="dropdown">
             <Link
               class="nav-link menu-title link-nav {pathname.includes(
-                _data.mylinkurl + '/ViewCagamasData'
+                _data.mylinkurl + '/MemberRegister'
               )
                 ? `active`
                 : ``}"
-              to={_data.mylinkurl + "/ViewCagamasData"}
+              to={_data.mylinkurl + "/MemberRegister"}
             >
-              <i data-feather="layout" /><span>View Cagamas Data</span></Link
+              <i data-feather="layout" /><span>Member Register</span></Link
             >
           </li>
 
           <li class="dropdown">
             <Link
               class="nav-link menu-title link-nav {pathname.includes(
-                _data.mylinkurl + '/ViewLPPSAData'
+                _data.mylinkurl + '/MemberList'
               )
                 ? `active`
                 : ``}"
-              to={_data.mylinkurl + "/ViewLPPSAData"}
+              to={_data.mylinkurl + "/MemberList"}
             >
-              <i data-feather="box" /><span>View LPPSA Data</span></Link
+              <i data-feather="box" /><span>Member List</span></Link
             >
           </li>
 

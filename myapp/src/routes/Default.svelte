@@ -6,21 +6,21 @@
   import { navigate, Router, Link, Route } from "svelte-navigator";
 
   let _data;
-  _data = JSON.parse(localStorage.getItem("_data"));
+  _data = JSON.parse(localStorage.getItem("_data")) || {};
 
   onMount(async () => {
-    if (
-      _data.user &&
-      _data.user.data &&
-      _data.user.data.stageDaftar &&
-      _data.user.data.stageDaftar == "0"
-    ) {
-      navigate(_data.mylinkurl + "/RegisterGroup");
-      // location.reload();
-    } else {
-      // navigate(_data.mylinkurl + "/Dashboard");
-      // location.reload();
-    }
+    // if (
+    //   _data.user &&
+    //   _data.user.data &&
+    //   _data.user.data.stageDaftar &&
+    //   _data.user.data.stageDaftar == "0"
+    // ) {
+    //   navigate(_data.mylinkurl + "/GroupRegister");
+    //   // location.reload();
+    // } else {
+    //   // navigate(_data.mylinkurl + "/Dashboard");
+    //   // location.reload();
+    // }
   });
 </script>
 

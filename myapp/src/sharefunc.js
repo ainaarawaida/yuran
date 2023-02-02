@@ -4,6 +4,7 @@ import { data } from "./store.js";
 import { useParams, navigate, Router, Link, Route } from "svelte-navigator";
 let luq;
 let _data ;
+_data = JSON.parse(localStorage.getItem("_data")) || {};
 data.update((currentPolls) => {
   _data = currentPolls;
   return _data;
@@ -12,7 +13,7 @@ data.update((currentPolls) => {
 
 const requestdataapi = async (inputs) => {
 
-  console.log("fffff",`${_data.myapiurl}/data`)
+
   let apidata = new Promise(function (myResolve, myReject) {
     let dataArray = new FormData();
     let dataHeader = new Headers();
